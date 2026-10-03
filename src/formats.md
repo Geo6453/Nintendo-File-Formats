@@ -28,6 +28,11 @@ This is a first-party library that mostly deals with shaders and textures.
 
 The PMAA file format covers many different extensions such as `.baglenv` and `.bagldof`.
 
+## CAS
+This is a first-party library that implements an animation system.
+
+* [BAEV files (binary animation events)](libs/cas/baev.md)
+
 ## GFD
 This is a tiny Wii U library that loads textures and shaders from gtx/gsh files.
 * [Gfx2 files (shaders and textures)](libs/gfd/gfx2.md)
@@ -87,7 +92,10 @@ The libraries use [AAL](#aal) and [nw::eft / nn::vfx](#nw) internally.
 XLINK files have the file extension `.bslnk` or `.belnk`.
 
 ## Nintendo Switch
-* [BDF files](libs/switch/bdf.md)
+* [BDF files (TLS certificates)](libs/switch/bdf.md)
+* [IMKV files (key-value databases)](libs/switch/imkv.md)
+* [NAX0 files (SD card encryption)](libs/switch/nax0.md)
+* [NSO0 files (executables)](libs/switch/nso0.md)
 * [System save data](libs/switch/systemsave.md)
 
 ## Animal Crossing: New Horizons {#acnh}

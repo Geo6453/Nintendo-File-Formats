@@ -54,7 +54,9 @@ The size of a frame can be determined by calculating the difference between two 
 | ---    | ---  | ---         |
 | 0x80   | 4    | `28 00 00 00` Payload's header length / seek table start
 | 0x??   | 4    | The last 4 bytes give the payload length without the payload's padding |
-| 0x??   | 4    | `E8 E8 E8 E8` Seek table's padding |
+| 0x??   |  | Padding (`E8 E8 E8 E8` ...) |
+
+The seek table is padded with `0xE8` until its size is a multiple of 16 bytes
 
 ## Opus Header
 (first frame, offset is reset for simplicity)
