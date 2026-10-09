@@ -11,8 +11,8 @@ To listen to these files, you can use [Foobar2000](https://www.foobar2000.org/) 
 | 0x0    | 0x60 | [File Header](#file-header)  |
 | 0x60   | 0x20 | Padding                      |
 | 0x80   | ?    | [Index Table](#index-table)  |
-| ?	     | 0x28 | [Opus Header](#opus-stream)  |
-| ?      | ?    | [Opus Stream](#audio-stream) |
+| ?	     | 0x28 | [Opus Header](#opus-header)  |
+| ?      | ?    | [Opus Stream](#opus-stream)  |
 
 A frame is the work unit for the file format. One frame is 20 ms and contains 960 samples.
 
