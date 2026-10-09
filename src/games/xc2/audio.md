@@ -43,7 +43,7 @@ To play these files, you can use [Foobar2000](https://www.foobar2000.org/) with 
 | 0x50   | 4    | Number of frames (bis) |
 | 0x54   | 4    | Index table offset (bis, `0x80`) |
 | 0x58   | 4    | Total length of the index table |
-| 0x5C   | 4    | Always 0? |
+| 0x5C   | 4    | Unknown (always 0?) |
 | 0x60   | 32   | Padding |
 
 ## Index Table
