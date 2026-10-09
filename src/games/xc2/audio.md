@@ -10,11 +10,11 @@ To listen to these files, you can use [Foobar2000](https://www.foobar2000.org/) 
 | ---    | ---  | ---                          |
 | 0x0    | 0x60 | [File Header](#file-header)  |
 | 0x60   | 0x20 | Padding                      |
-| 0x80   | ?    | [Seek Table](#seek-table)    |
+| 0x80   | ?    | [Index Table](#index-table)  |
 | ?	     | 0x28 | [Opus Header](#opus-stream)  |
 | ?      | ?    | [Opus Stream](#audio-stream) |
 
-A frame is the work unit for the file format. One frame is 20 ms and approximately 960 samples
+A frame is the work unit for the file format. One frame is 20 ms and contains 960 samples.
 
 ## File Header
 
@@ -25,7 +25,7 @@ A frame is the work unit for the file format. One frame is 20 ms and approximate
 | 0x8    | 4    | Always `"opus"` |
 | 0xC    | 4    | Always 1 |
 | 0x10   | 4    | Always `"head"` |
-| 0x14   | 4    | Seek table position (`0x80`) |
+| 0x14   | 4    | Index table position (`0x80`) |
 | 0x18   | 4    | Channel count (1 or 2) |
 | 0x1C   | 4    | Raw opus start position |
 | 0x20   | 4    | Raw opus length (without padding) |
@@ -39,24 +39,24 @@ A frame is the work unit for the file format. One frame is 20 ms and approximate
 | 0x40   | 4    | Unknown (64,000 or 96,000) |
 | 0x44   | 4    | Unknown (20,000) |
 | 0x48   | 4    | Unknown (always 0?) |
-| 0x4C   | 4    | Number of frames (without the first and last 4 bytes of seek table so it's X-2) |
+| 0x4C   | 4    | Number of frames (without the first and last 4 bytes of index table so it's X-2) |
 | 0x50   | 4    | Number of frames (bis) |
-| 0x54   | 4    | Seek table position (bis) (`0x80`) |
-| 0x58   | 4    | Total length of the seek table |
+| 0x54   | 4    | Index table position (bis) (`0x80`) |
+| 0x58   | 4    | Total length of the index table |
 | 0x5C   | 4    | Always 0? |
 | 0x60   | 32   | Padding  |
 
-## Seek Table
+## Index Table
 
 The size of a frame can be determined by calculating the difference between two consecutive offsets.
 
 | Offset | Size | Description |
 | ---    | ---  | ---         |
-| 0x80   | 4    | `28 00 00 00` Payload's header length / seek table start
+| 0x80   | 4    | `28 00 00 00` Payload's header length / index table start
 | 0x??   | 4    | The last 4 bytes give the payload length without the payload's padding |
 | 0x??   |  | Padding (`E8 E8 E8 E8` ...) |
 
-The seek table is padded with `0xE8` until its size is a multiple of 16 bytes
+The index table is padded with `0xE8` until its size is a multiple of 16 bytes
 
 ## Opus Header
 (first frame, offset is reset for simplicity)
@@ -76,7 +76,7 @@ The seek table is padded with `0xE8` until its size is a multiple of 16 bytes
 | 0x20   | 4    | `04 00 00 80` ? |
 | 0x24   | 4    | Length of the file's rest (without the padding) |
 
-The seek table is padded with `0xE8` until its size is a multiple of 16 bytes
+The index table is padded with `0xE8` until its size is a multiple of 16 bytes
 
 ## Opus Stream
 
